@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Quiz Application</string>
+    <string name="welcome">Welcome</string>
+    <string name="grammar_lessons">Grammar Lessons</string>
+    <string name="welcome_to_basic_english_learning_app">Welcome to basic english learning app.</string>
+    <string name="vocabulary_lessons">Vocabulary Lessons</string>
+    <string name="comprehensive_lessons">Comprehensive Lessons</string>
+    <string name="take_quiz">Take Quiz</string>
+</resources>
