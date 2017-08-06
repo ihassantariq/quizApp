@@ -15,10 +15,9 @@ public class WelcomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_welcome);
 
         Button quizButton=(Button)findViewById(R.id.quizButton);
-
         quizButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent=new Intent(v.getContext(),TestActivity.class);
+                Intent intent=new Intent(v.getContext(),TestSelectionActivity.class);
                 startActivity(intent);
             }
         });

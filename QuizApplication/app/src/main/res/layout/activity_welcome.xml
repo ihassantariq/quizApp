@@ -49,7 +49,6 @@
            android:padding="15dp"
            android:layout_marginTop="10dp"
            android:textAllCaps="false"
-
            android:text="@string/comprehensive_lessons"
            android:background="@drawable/button_border"/>
        <Button

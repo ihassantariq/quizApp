@@ -176,20 +176,32 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 if( x > 0 &&cursor.getString(0)!=null && !cursor.getString(0).isEmpty()) {
                     question.set_id(Integer.parseInt(cursor.getString(0)));
                     question.set_Type(Integer.parseInt(cursor.getString(1)));
-                    question.set_Question(cursor.getString(2));
-                    question.set_Answer1(cursor.getString(3));
-                    question.set_Answer2(cursor.getString(4));
-                    question.set_Answer3(cursor.getString(5));
-                    question.set_Answer4(cursor.getString(6));
-                    question.set_Correct(cursor.getString(Integer.parseInt( cursor.getString(7) + 2)));// getting the actual answer
+                    question.set_Question(removeDot(cursor.getString(2)));
+                    question.set_Answer1(removeDot(cursor.getString(3)));
+                    question.set_Answer2(removeDot(cursor.getString(4)));
+                    question.set_Answer3(removeDot(cursor.getString(5)));
+                    question.set_Answer4(removeDot(cursor.getString(6)));
+                    question.set_Correct(removeDot(cursor.getString(Integer.parseInt( cursor.getString(7)) + 2)));// getting the actual answer
                     // Adding contact to list
                     questionsList.add(question);
                 }
             } while (cursor.moveToNext());
         }
-
         // return contact list
         return questionsList;
+    }
+    String removeDot(String stringToSplit)
+    {
+        String returenedString=stringToSplit;
+        if(!stringToSplit.isEmpty())
+        {
+            String[] splitedStrings=stringToSplit.split("\\.",2);
+            if(splitedStrings.length==2)
+            {
+                returenedString=splitedStrings[1].replaceFirst("\\s","");
+            }
+        }
+        return returenedString;
     }
 
 

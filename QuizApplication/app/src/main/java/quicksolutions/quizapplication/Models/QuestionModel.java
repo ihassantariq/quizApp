@@ -101,4 +101,15 @@ public class QuestionModel {
 
     String _Ref;
 
+    public boolean get_isCorrect() {
+        return _isCorrect;
+    }
+
+    public void set_isCorrect(boolean _isCorrect) {
+        this._isCorrect = _isCorrect;
+    }
+
+    private boolean _isCorrect;
+
+
 }

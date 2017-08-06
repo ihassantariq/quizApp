@@ -1,9 +1,28 @@
 <resources>
     <string name="app_name">Quiz Application</string>
-    <string name="welcome">Welcome</string>
+
+    <!-- Welcome Page-->
+    <string name="welcome_page_title">Welcome</string>
     <string name="grammar_lessons">Grammar Lessons</string>
     <string name="welcome_to_basic_english_learning_app">Welcome to basic english learning app.</string>
     <string name="vocabulary_lessons">Vocabulary Lessons</string>
     <string name="comprehensive_lessons">Comprehensive Lessons</string>
     <string name="take_quiz">Take Quiz</string>
+
+    <!-- Test Selection page-->
+    <string name="test_selection_page_title">Set Difficulty</string>
+    <string name="select_difficulty_level">Please select difficulty level</string>
+    <string name="basic_test">Basic</string>
+    <string name="intermediate_test">Intermediate</string>
+    <string name="advance_test">Advance</string>
+
+    <!-- Test Activity-->
+    <string name="next_button_title">Next</string>
+
+
+    <!-- Result-->
+    <string name="result_activity_title">Result</string>
+    <string name="result_show_detail">Show Details</string>
+    <string name="result_hide_detail">Hide Details</string>
+
 </resources>

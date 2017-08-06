@@ -7,7 +7,7 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/welcome"
+        android:label="@string/welcome_page_title"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".WelcomeActivity">
@@ -17,7 +17,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".TestActivity"></activity>
+        <activity
+            android:name=".TestSelectionActivity"
+            android:label="@string/test_selection_page_title" android:parentActivityName=".WelcomeActivity"></activity>
+        <activity android:name=".TestActivity" android:parentActivityName=".TestSelectionActivity"  />
+        <activity android:name=".ResultActivity"
+            android:label="@string/result_activity_title" android:parentActivityName=".TestSelectionActivity"></activity>
     </application>
 
 </manifest>
