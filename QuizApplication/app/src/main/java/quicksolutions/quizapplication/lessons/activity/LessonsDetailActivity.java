@@ -2,20 +2,28 @@ package quicksolutions.quizapplication.lessons.activity;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.speech.tts.TextToSpeech;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.TextView;
 
+
+import org.jsoup.Jsoup;
+
 import java.util.ArrayList;
+import java.util.Locale;
 
 import quicksolutions.quizapplication.Helpers.DbHandler;
+import quicksolutions.quizapplication.Managers.SpeechManager;
 import quicksolutions.quizapplication.R;
 import quicksolutions.quizapplication.lessons.adapter.RecylerViewAdapter;
 
@@ -25,6 +33,7 @@ public class LessonsDetailActivity extends AppCompatActivity {
     TextView txtView;
     WebView webView;
     DbHandler dbHandler;
+    TextToSpeech t1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +45,15 @@ public class LessonsDetailActivity extends AppCompatActivity {
     public void initialize() {
 
         webView = (WebView) findViewById(R.id.webview);
+
+       /* t1=new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if(status != TextToSpeech.ERROR) {
+                    t1.setLanguage(Locale.UK);
+                }
+            }
+        });*/
 
         getSupportActionBar().setTitle(getIntent().getStringExtra("name"));
 
@@ -58,6 +76,33 @@ public class LessonsDetailActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_lessons_detail, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.speak:
+                if (!SpeechManager.getInstance().getT1().isSpeaking())
+                    speak(htmlText);
+                else {
+                    SpeechManager.getInstance().getT1().stop();
+//                    SpeechManager.getInstance().getT1().shutdown();
+                }
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+    }
+
+
     public void getData(String name) {
         String selectQuery = "select desc from data where name = '" + name.toLowerCase() + "';";
 
@@ -76,5 +121,30 @@ public class LessonsDetailActivity extends AppCompatActivity {
 
     }
 
+
+    public void speak(String htmlText) {
+
+
+//        String textToRead = android.text.Html.fromHtml(htmlText).toString();
+        String textToRead = html2text(htmlText);
+        Log.i("TTS", textToRead);
+        SpeechManager.getInstance().getT1().speak(textToRead, TextToSpeech.QUEUE_FLUSH, null);
+        //SpeechManager.getInstance().getT1().speak(android.text.Html.fromHtml(htmlText).toString(),TextToSpeech.QUEUE_FLUSH,null,"1");
+    }
+
+
+    @Override
+    public void onPause() {
+        if (SpeechManager.getInstance().getT1() != null) {
+            SpeechManager.getInstance().getT1().stop();
+//            SpeechManager.getInstance().getT1().shutdown();
+        }
+        super.onPause();
+    }
+
+
+    public static String html2text(String html) {
+        return Jsoup.parse(html).text();
+    }
 
 }
