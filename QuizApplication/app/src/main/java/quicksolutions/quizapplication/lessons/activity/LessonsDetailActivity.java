@@ -89,9 +89,12 @@ public class LessonsDetailActivity extends AppCompatActivity {
 
         switch (item.getItemId()) {
             case R.id.speak:
-                if (!SpeechManager.getInstance().getT1().isSpeaking())
+                if (!SpeechManager.getInstance().getT1().isSpeaking()) {
+                    item.setTitle("Stop");
                     speak(htmlText);
+                }
                 else {
+                    item.setTitle("Speak");
                     SpeechManager.getInstance().getT1().stop();
 //                    SpeechManager.getInstance().getT1().shutdown();
                 }
@@ -128,7 +131,35 @@ public class LessonsDetailActivity extends AppCompatActivity {
 //        String textToRead = android.text.Html.fromHtml(htmlText).toString();
         String textToRead = html2text(htmlText);
         Log.i("TTS", textToRead);
-        SpeechManager.getInstance().getT1().speak(textToRead, TextToSpeech.QUEUE_FLUSH, null);
+
+
+        int dividerLimit = 3900;
+        if(textToRead.length() >= dividerLimit) {
+            int textLength = textToRead.length();
+            ArrayList<String> texts = new ArrayList<String>();
+            int count = textLength / dividerLimit + ((textLength % dividerLimit == 0) ? 0 : 1);
+            int start = 0;
+            int end = textToRead.indexOf(" ", dividerLimit);
+            for(int i = 1; i<=count; i++) {
+                texts.add(textToRead.substring(start, end));
+                start = end;
+                if((start + dividerLimit) < textLength) {
+                    end = textToRead.indexOf(" ", start + dividerLimit);
+                } else {
+                    end = textLength;
+                }
+            }
+            for(int i=0; i<texts.size(); i++) {
+                SpeechManager.getInstance().getT1().speak(texts.get(i), TextToSpeech.QUEUE_ADD, null);
+            }
+        } else {
+            SpeechManager.getInstance().getT1().speak(textToRead, TextToSpeech.QUEUE_FLUSH, null);
+        }
+
+//        SpeechManager.getInstance().getT1().speak(textToRead, TextToSpeech.QUEUE_FLUSH, null);
+
+
+
         //SpeechManager.getInstance().getT1().speak(android.text.Html.fromHtml(htmlText).toString(),TextToSpeech.QUEUE_FLUSH,null,"1");
     }
 
