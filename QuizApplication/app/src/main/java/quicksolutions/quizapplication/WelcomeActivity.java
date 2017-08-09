@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import quicksolutions.quizapplication.Managers.SpeechManager;
 import quicksolutions.quizapplication.lessons.activity.LessonsActivity;
 
 import static java.security.AccessController.getContext;
@@ -60,6 +61,15 @@ public class WelcomeActivity extends AppCompatActivity {
             public void onClick(View v) {
                 intent = new Intent(WelcomeActivity.this, LessonsActivity.class);
                 saveLessonType("vocabulary");
+                startActivity(intent);
+            }
+        });
+
+        comprehensionLessons.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                intent = new Intent(WelcomeActivity.this, LessonsActivity.class);
+                saveLessonType("comprehension");
                 startActivity(intent);
             }
         });

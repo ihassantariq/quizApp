@@ -43,6 +43,7 @@ public class LessonsActivity extends AppCompatActivity {
              "Active Passive"};
     String[] vocabulary_arr = {"Overview","British and American English","Spelling Rules","Common Errors","Idioms in Letters and E-mails","Idioms in Informal English","Proverbs","Opposites","Synonyms","Abbreviations"};
 
+    String[] comprehension_arr = {"Comprehension Overview", "Reading Skills", "Comprehension Strategies"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,6 +69,10 @@ public class LessonsActivity extends AppCompatActivity {
                 getSupportActionBar().setTitle("Vocabulary Lessons");
                 for (int i = 0; i < vocabulary_arr.length; i++)
                     list.add(vocabulary_arr[i]);
+            } else if (type.equalsIgnoreCase("comprehension")) {
+                getSupportActionBar().setTitle("Comprehension");
+                for (int i = 0; i < comprehension_arr.length; i++)
+                    list.add(comprehension_arr[i]);
             }
         }
 
