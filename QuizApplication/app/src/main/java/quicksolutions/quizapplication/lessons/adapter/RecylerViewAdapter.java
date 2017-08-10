@@ -6,6 +6,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -19,9 +21,10 @@ import quicksolutions.quizapplication.lessons.activity.LessonsDetailActivity;
 /**
  * Created by zeeshan on 8/6/2017.
  */
-public class RecylerViewAdapter extends RecyclerView.Adapter<RecylerViewAdapter.ViewHolder>{
+public class RecylerViewAdapter extends RecyclerView.Adapter<RecylerViewAdapter.ViewHolder> implements Filterable {
 
     ArrayList<String> list;
+    ArrayList<String> mFilteredList;
     Context context;
     View view1;
     ViewHolder viewHolder1;
@@ -33,6 +36,7 @@ public class RecylerViewAdapter extends RecyclerView.Adapter<RecylerViewAdapter.
 
         this.parent  = parent;
         this.list = list;
+        this.mFilteredList = list;
         context = context1;
     }
 
@@ -63,13 +67,13 @@ public class RecylerViewAdapter extends RecyclerView.Adapter<RecylerViewAdapter.
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position){
 
-        holder.textView.setText(list.get(position));
+        holder.textView.setText(mFilteredList.get(position));
 
         holder.container.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 Intent intent=new Intent(context,LessonsDetailActivity.class);
-                intent.putExtra("name",list.get(position));
+                intent.putExtra("name",mFilteredList.get(position));
                 context.startActivity(intent);
 
             }
@@ -80,6 +84,48 @@ public class RecylerViewAdapter extends RecyclerView.Adapter<RecylerViewAdapter.
     @Override
     public int getItemCount(){
 
-        return list.size();
+        return mFilteredList.size();
+    }
+
+
+
+    @Override
+    public Filter getFilter() {
+
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+
+                String charString = charSequence.toString();
+
+                if (charString.isEmpty()) {
+
+                    mFilteredList = list;
+                } else {
+
+                    ArrayList<String> filteredList = new ArrayList<>();
+
+                    for (String s : list) {
+
+                        if (s.toLowerCase().contains(charString) ) {
+
+                            filteredList.add(s);
+                        }
+                    }
+
+                    mFilteredList = filteredList;
+                }
+
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = mFilteredList;
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                mFilteredList = (ArrayList<String>) filterResults.values;
+                notifyDataSetChanged();
+            }
+        };
     }
 }
