@@ -6,5 +6,7 @@
     <color name="backgroundColor">#ffffff</color>
     <color name="buttonColor">#d17e39</color>
     <color name="quizButtonColor">#f0c143</color>
-
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="body_background_color">#FAFAFA</color>
 </resources>

@@ -1,5 +1,6 @@
 package quicksolutions.quizapplication.lessons.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
@@ -9,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -42,22 +44,26 @@ public class RecylerViewAdapter extends RecyclerView.Adapter<RecylerViewAdapter.
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
 
-        public LinearLayout container;
-        public TextView textView;
+        public RelativeLayout container;
+        public TextView textView, desc;
 
         public ViewHolder(View v){
 
             super(v);
 
-            container = (LinearLayout)v.findViewById(R.id.container);
+            container = (RelativeLayout)v.findViewById(R.id.container);
             textView = (TextView)v.findViewById(R.id.subject_textview);
+            desc = (TextView)v.findViewById(R.id.desc);
         }
     }
 
     @Override
     public RecylerViewAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
+        LayoutInflater layoutInflater = (LayoutInflater) context
+                .getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
+        view1 = layoutInflater.inflate(R.layout.recylerview_items, null, true);
 
-        view1 = LayoutInflater.from(context).inflate(R.layout.recylerview_items,parent,false);
+//        view1 = LayoutInflater.from(context).inflate(R.layout.recylerview_items,parent,false);
 
         viewHolder1 = new ViewHolder(view1);
 
@@ -68,6 +74,7 @@ public class RecylerViewAdapter extends RecyclerView.Adapter<RecylerViewAdapter.
     public void onBindViewHolder(ViewHolder holder, final int position){
 
         holder.textView.setText(mFilteredList.get(position));
+        holder.desc.setText("Get started with "+mFilteredList.get(position));
 
         holder.container.setOnClickListener(new View.OnClickListener(){
             @Override

@@ -83,7 +83,7 @@ public class LessonsActivity extends AppCompatActivity {
 
         listView = (RecyclerView) findViewById(R.id.listView);
         listView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new RecylerViewAdapter(this,list,LessonsActivity.this);
+        adapter = new RecylerViewAdapter(LessonsActivity.this,list,LessonsActivity.this);
         listView.setAdapter(adapter);
 
     }
