@@ -47,7 +47,7 @@ public class LessonsActivity extends AppCompatActivity {
              "Active Passive"};
     String[] vocabulary_arr = {"Overview","British and American English","Spelling Rules","Common Errors","Idioms in Letters and E-mails","Idioms in Informal English","Proverbs","Opposites","Synonyms","Abbreviations"};
 
-    String[] comprehension_arr = {"Comprehension Overview", "Reading Skills", "Comprehension Strategies"};
+    String[] comprehension_arr = {"Comprehension Overview", "Reading Skills", "Comprehension Strategies","Comprehension Exercise 1","Comprehension Exercise 2","Comprehension Exercise 3","Comprehension Exercise 4","Comprehension Exercise 5","Comprehension Exercise 6","Comprehension Exercise 7","Comprehension Exercise 8"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
