@@ -36,7 +36,6 @@
             android:parentActivityName=".TestSelectionActivity" />
         <activity
             android:name=".lessons.activity.LessonsDetailActivity"
-            android:label="@string/title_activity_lessons_detail"
             android:parentActivityName=".lessons.activity.LessonsActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

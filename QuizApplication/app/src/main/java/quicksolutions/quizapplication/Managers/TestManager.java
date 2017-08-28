@@ -12,7 +12,7 @@ public class TestManager {
     private List<QuestionModel> mQuestions;
     private int mTotalQuestions;
     private List<QuestionModel> mCurrentQuestions=new ArrayList<>();
-    private int mCount =0;
+    public int mCount =0;
     private QuestionModel mCurrentQuestion;
 
     //Getters

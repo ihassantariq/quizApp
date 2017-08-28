@@ -15,11 +15,11 @@ public class ResourceHelper {
     String[] mQuestionsArray;
     String[] mAnswersArray;
     String[] mExactAnswers;
-
     public ResourceHelper(Context context)
     {
         mContext=context;
     }
+
     void addVocabularySets(List<QuestionModel> questionsList)
     {
         //vocabulary sets

@@ -18,11 +18,24 @@
 
     <!-- Test Activity-->
     <string name="next_button_title">Next</string>
+    <string name="message_correct">Correct Answer</string>
+    <string name="message_wrong">Wrong Answer</string>
 
 
     <!-- Result-->
     <string name="result_activity_title">Result</string>
     <string name="result_show_detail">Show Details</string>
     <string name="result_hide_detail">Hide Details</string>
+    <string name="result_total_questions">Total Questions:</string>
+    <string name="result_wrong">Wrong: </string>
+    <string name="result_correct">Correct: </string>
+    <string name="result_a">a.</string>
+    <string name="result_b">b.</string>
+    <string name="result_c">c.</string>
+    <string name="result_d">d.</string>
+    <string name="result_your_answer">Your Answer: </string>
+    <string name="result_correct_answer">Correct Answer: </string>
+
+
 
 </resources>

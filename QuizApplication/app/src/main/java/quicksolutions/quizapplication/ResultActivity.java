@@ -33,10 +33,12 @@ public class ResultActivity extends AppCompatActivity {
     void setupSimpleResult()
     {
         StringBuilder simpleResult=new StringBuilder();
+
+
         TestManager testManager= QuestionManager.getQuestionManager(this).getmCurrentTestManager();
-        simpleResult.append("Total Questions: "+ testManager.getTotalCount()+System.getProperty("line.separator"));
-        simpleResult.append("Correct: "+ testManager.getCorrectCount()+System.getProperty("line.separator"));
-        simpleResult.append("Wrong: "+ testManager.getWrongCount()+System.getProperty("line.separator"));
+        simpleResult.append(getResources().getString(R.string.result_total_questions)+ " "+testManager.getTotalCount()+System.getProperty("line.separator")+System.getProperty("line.separator"));
+        simpleResult.append( getResources().getString(R.string.result_correct)+ " "+ testManager.getCorrectCount()+System.getProperty("line.separator")+System.getProperty("line.separator"));
+        simpleResult.append(getResources().getString(R.string.result_wrong)+  " "+testManager.getWrongCount()+System.getProperty("line.separator")+System.getProperty("line.separator"));
         mSimpleResultTextView.setText(simpleResult);
     }
     void setupDetailResult()
@@ -48,11 +50,12 @@ public class ResultActivity extends AppCompatActivity {
         for(QuestionModel question:questions)
         {
             detailResult.append(i+". "+question.get_Question()+System.getProperty("line.separator")+System.getProperty("line.separator"));
-            detailResult.append("a. "+question.get_Answer1()+System.getProperty("line.separator"));
-            detailResult.append("b. "+question.get_Answer2()+System.getProperty("line.separator"));
-            detailResult.append("c. "+question.get_Answer3()+System.getProperty("line.separator"));
-            detailResult.append("d. "+question.get_Answer4()+System.getProperty("line.separator")+System.getProperty("line.separator"));
-            detailResult.append("Answer: "+question.get_Correct()+System.getProperty("line.separator"));
+            detailResult.append(getResources().getString(R.string.result_a)+ " "+question.get_Answer1()+System.getProperty("line.separator"));
+            detailResult.append(getResources().getString(R.string.result_b)+  " " + question.get_Answer2()+System.getProperty("line.separator"));
+            detailResult.append(getResources().getString(R.string.result_c)+ " " + question.get_Answer3()+System.getProperty("line.separator"));
+            detailResult.append(getResources().getString(R.string.result_d) + " "+ question.get_Answer4()+System.getProperty("line.separator")+System.getProperty("line.separator"));
+            detailResult.append(getResources().getString(R.string.result_your_answer)+ " "+ question.get_Ref()+System.getProperty("line.separator"));
+            detailResult.append(getResources().getString(R.string.result_correct_answer)+ " "+ question.get_Correct()+System.getProperty("line.separator"));
             detailResult.append(System.getProperty("line.separator"));
             i++;
         }

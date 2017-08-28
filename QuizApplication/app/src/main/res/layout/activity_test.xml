@@ -12,10 +12,12 @@
     tools:context="quicksolutions.quizapplication.TestActivity">
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:id="@+id/parent_scroll_view">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:id="@+id/simple_question"
             android:orientation="vertical">
         <TextView
             android:layout_width="match_parent"
@@ -57,7 +59,7 @@
             android:layout_height="wrap_content"
             android:text="@string/next_button_title"
             android:layout_gravity="center"
-            android:onClick="OnNextClick"
+            android:onClick="onNextClick"
             android:id="@+id/next_button"/>
         </LinearLayout>
     </ScrollView>
