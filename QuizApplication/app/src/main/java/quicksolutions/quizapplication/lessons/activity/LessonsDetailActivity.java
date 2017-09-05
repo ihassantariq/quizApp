@@ -91,12 +91,13 @@ public class LessonsDetailActivity extends AppCompatActivity {
             case R.id.speak:
                 if (!SpeechManager.getInstance().getT1().isSpeaking()) {
                     item.setTitle("Stop");
+                    item.setIcon(getResources().getDrawable(R.drawable.stop));
                     speak(htmlText);
                 }
                 else {
                     item.setTitle("Speak");
+                    item.setIcon(getResources().getDrawable(R.drawable.speak));
                     SpeechManager.getInstance().getT1().stop();
-//                    SpeechManager.getInstance().getT1().shutdown();
                 }
                 return true;
             default:
@@ -126,9 +127,6 @@ public class LessonsDetailActivity extends AppCompatActivity {
 
 
     public void speak(String htmlText) {
-
-
-//        String textToRead = android.text.Html.fromHtml(htmlText).toString();
         String textToRead = html2text(htmlText);
         Log.i("TTS", textToRead);
 
@@ -155,12 +153,6 @@ public class LessonsDetailActivity extends AppCompatActivity {
         } else {
             SpeechManager.getInstance().getT1().speak(textToRead, TextToSpeech.QUEUE_FLUSH, null);
         }
-
-//        SpeechManager.getInstance().getT1().speak(textToRead, TextToSpeech.QUEUE_FLUSH, null);
-
-
-
-        //SpeechManager.getInstance().getT1().speak(android.text.Html.fromHtml(htmlText).toString(),TextToSpeech.QUEUE_FLUSH,null,"1");
     }
 
 
@@ -168,7 +160,6 @@ public class LessonsDetailActivity extends AppCompatActivity {
     public void onPause() {
         if (SpeechManager.getInstance().getT1() != null) {
             SpeechManager.getInstance().getT1().stop();
-//            SpeechManager.getInstance().getT1().shutdown();
         }
         super.onPause();
     }

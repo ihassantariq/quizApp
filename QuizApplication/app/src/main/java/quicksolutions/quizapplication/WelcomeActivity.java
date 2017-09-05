@@ -6,6 +6,9 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
@@ -26,6 +29,7 @@ public class WelcomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
 
+        setupTitle();
         initialize();
         setClickListeners();
 
@@ -36,6 +40,10 @@ public class WelcomeActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+    void setupTitle()
+    {
+        setTitle(getResources().getString(R.string.welcome_page_title));
     }
 
     public void initialize() {
@@ -81,6 +89,30 @@ public class WelcomeActivity extends AppCompatActivity {
         editor.putString("type", type);
         editor.commit();
 
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_welcome, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.about:
+                startAboutActivity();
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+    }
+    void startAboutActivity()
+    {
+        Intent intent=new Intent(this,AboutActivity.class);
+        startActivity(intent);
     }
 
 }

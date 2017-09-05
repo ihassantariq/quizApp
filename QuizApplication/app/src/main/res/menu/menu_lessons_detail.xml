@@ -2,6 +2,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="quicksolutions.quizapplication.lessons.activity.LessonsDetailActivity">
-    <item android:id="@+id/speak" android:title="Speak"
-        android:orderInCategory="100" app:showAsAction="ifRoom" />
+    <item android:id="@+id/speak"
+        android:title="Speak"
+        android:icon="@drawable/speak"
+        android:orderInCategory="100"
+        app:showAsAction="ifRoom|collapseActionView" />
 </menu>

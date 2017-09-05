@@ -2,6 +2,7 @@ package quicksolutions.quizapplication;
 
 import android.content.Intent;
 import android.database.SQLException;
+import android.graphics.drawable.ColorDrawable;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +10,9 @@ import android.os.Bundle;
 import android.support.v7.widget.ButtonBarLayout;
 import android.support.v7.widget.OrientationHelper;
 import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -26,6 +30,7 @@ import quicksolutions.quizapplication.Helpers.DataBaseHelper;
 import quicksolutions.quizapplication.Helpers.ResourceHelper;
 import quicksolutions.quizapplication.Managers.PassageManager;
 import quicksolutions.quizapplication.Managers.QuestionManager;
+import quicksolutions.quizapplication.Managers.SpeechManager;
 import quicksolutions.quizapplication.Managers.TestManager;
 import quicksolutions.quizapplication.Models.PassageModel;
 import quicksolutions.quizapplication.Models.QuestionModel;
@@ -49,6 +54,7 @@ public class TestActivity extends AppCompatActivity {
     private boolean skipToastForPassage = false;
     private LinearLayout passageLayout;
     private Button mNextButton;
+    private PassageModel randomPassage;
 
 
     @Override
@@ -66,8 +72,7 @@ public class TestActivity extends AppCompatActivity {
         mOption_4 = (RadioButton) findViewById(R.id.fourth_option_rb);
         mNextButton = (Button) findViewById(R.id.next_button);
 
-        //  mPassagePlacement=getPassageRandomPlacement();
-        mPassagePlacement = 1;
+        mPassagePlacement=getPassageRandomPlacement();
 
         setTestType();
         setupTitle();
@@ -123,8 +128,8 @@ public class TestActivity extends AppCompatActivity {
 
     int getPassageRandomPlacement() {
         Random random = new Random();
-        final int min = 10;
-        final int max = 20;
+        final int min = 2;
+        final int max = 25;
         return random.nextInt(max - min) + min;
     }
 
@@ -152,7 +157,7 @@ public class TestActivity extends AppCompatActivity {
         if (mTestManager.getCount() == mPassagePlacement) {
             skipToastForPassage = true;
             hideSimpleQuestionLayout();
-            PassageModel randomPassage = mPassageManager.getRandomPassage();
+            randomPassage = mPassageManager.getRandomPassage();
             PopulateViewWithPassage(randomPassage);
 
             mTestManager.mCount = mTestManager.getCount() + randomPassage.getQuestions().size();
@@ -160,12 +165,31 @@ public class TestActivity extends AppCompatActivity {
         } else {
             if (skipToastForPassage) {
                 skipToastForPassage = false;
+                showSnackbarForPassage();
                 removePassageLayout();
                 showSimpleQuestionLayout();
             }
             getNextQuestionAndPopulateView();
         }
 
+    }
+    void showSnackbarForPassage()
+    {
+        Snackbar mySnackbar = null;
+
+        int wrongCount=0;
+        int correctCount=0;
+            for(QuestionModel question:randomPassage.getQuestions())
+            {
+             if(question.get_isCorrect())
+                 correctCount++;
+             else
+                  wrongCount++;
+            }
+        String message=getResources().getString(R.string.message_correct) + "s: "+correctCount +"\n"+ getResources().getString(R.string.message_wrong) + "s: "+wrongCount;
+        mySnackbar = Snackbar.make(findViewById(R.id.activity_test),
+                message, Snackbar.LENGTH_SHORT);
+        mySnackbar.show();
     }
 
     void removePassageLayout() {

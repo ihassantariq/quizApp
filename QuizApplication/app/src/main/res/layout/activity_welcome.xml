@@ -8,9 +8,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@color/backgroundColor"
+    android:background="@drawable/my_gradient_drawable"
     tools:context="quicksolutions.quizapplication.WelcomeActivity">
-
    <LinearLayout
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
@@ -18,12 +17,16 @@
        android:dividerPadding="10dp"
        android:layout_centerHorizontal="true"
        android:layout_centerVertical="true">
+       <ImageView
+           android:layout_width="wrap_content"
+           android:layout_height="100dp"
+           android:src="@drawable/du_logo"/>
        <TextView
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
            android:layout_margin="10dp"
-           android:textColor="@android:color/black"
-           android:text="@string/welcome_to_basic_english_learning_app"/>
+           android:textColor="@color/colorPrimaryDark"
+           android:text="@string/welcome_to_du_english_learning_app"/>
        <Button
            android:layout_width="200dp"
            android:layout_height="wrap_content"

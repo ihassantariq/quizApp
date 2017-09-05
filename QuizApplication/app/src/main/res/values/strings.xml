@@ -1,10 +1,10 @@
 <resources>
-    <string name="app_name">Quiz Application</string>
+    <string name="app_name">DU ENGLISH LEARNING</string>
 
     <!-- Welcome Page-->
-    <string name="welcome_page_title">Welcome</string>
+    <string name="welcome_page_title">Welcome, User</string>
     <string name="grammar_lessons">Grammar Lessons</string>
-    <string name="welcome_to_basic_english_learning_app">Welcome to basic english learning app.</string>
+    <string name="welcome_to_du_english_learning_app">Welcome to Doffar University english learning app.</string>
     <string name="vocabulary_lessons">Vocabulary Lessons</string>
     <string name="comprehensive_lessons">Comprehensive Lessons</string>
     <string name="take_quiz">Take Quiz</string>
@@ -35,7 +35,26 @@
     <string name="result_d">d.</string>
     <string name="result_your_answer">Your Answer: </string>
     <string name="result_correct_answer">Correct Answer: </string>
-
+    <string name="search">Search</string>
+    <string name="about">About</string>
+    <string name="about_description">
+        Apps features:\n\n
+        1.	In welcome page you can select any  type of lesson
+            and can also take quiz by selecting take quiz button.
+        2.	There are 3 types of categories - Grammar, vocabulary, comprehension.\n
+        4.	You can select any category lesson and take the lesson. In this way you are
+            preparing yourself for the quiz.\n
+        5.	Audio pronunciation of each lesson is available you just have to
+            select the icon on top of each lesson and if you do not want
+            to listen to it you can stop it any time by clicking the stop icon.\n
+        6.	There are three types of quizes for different users (basic -> intermediate -> advance)\n
+        7.	Basic and intermediate have 35 questions and advance test has 40 questions.\n
+        8.	At the end of quiz app will show you the result of your test. You can also analyze\n
+            your performance by noticing the badge - which will show you whether your question is
+            right or wrong.\n
+        10.	Each login session should have different questions so do not worry keep practicing.\n
+    </string>
+    <string name="created_by"> This app is created by @Ahmed Abdullah Ahmed Al-Ojaili\n</string>
 
 
 </resources>
